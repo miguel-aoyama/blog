@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,12 @@ Route::get('/Bookmark',[App\Http\Controllers\BookmarkController::class,'index'])
 ->name('bookmark.index');
 
 Route::resource('/user', 'App\Http\Controllers\UserController');
+
+Route::resource('/blogs', BlogController::class)
+                  ->names(['index' => 'blog.index',
+                        'create' => 'blog.create',
+                        'edit' => 'blog.edit',
+                        'update' => 'blog.update',
+                        'destroy' => 'blog.destroy',
+                        'store' => 'blog.store'])
+                ->middleware('auth');
